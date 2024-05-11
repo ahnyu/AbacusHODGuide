@@ -29,8 +29,8 @@ Make valid for JupyterHub
 python -m ipykernel install --user --name hod_guide --display-name hod_guide
 ```
 
-## Prep configuration files as needed
-Check configs/prepConfigs.ipynb for more details
+## Prep data and configuration files as needed
+Check PrepDataConfig.ipynb for more details
 several things
 - you can either pass covmat under `config['data_params']['tracer_combos']['LRG_LRG']['path2cov']`, and set `config['fit_config_params']['mockcov'] = True`, or you can just pass covmat by `config['fit_config_params']['joint']`, there is no difference for a single tracer fitting, but for multitracer case, the first option assume no correlation between tracer combos, and the second option allow you to pass a full joint covmat. Examples use joint.
 - `config['fit_params']['LRG']['some_param_name'] = [paramindex, lower bound, higher bound, gaussian mean, gaussian std]`, following https://arxiv.org/abs/2306.06314, we use a truncated normal as a prior, if you do not want to apply any prior other than flat bound, then set `config['fit_params']['LRG']['some_params_name'] = [paramindex, lower bound, higher bound]`, then change scripts/run_nautilus.py
@@ -48,5 +48,5 @@ cd /path/to/AbacusHODGuide
 say you want a full HOD fitting run using configuration file some_config_name.yaml
 ```
 cd /path/to/AbacusHODGuide
-sbatch launchers/submit_nautilus.sh some_config_name
+sh launchers/submit_nautilus.sh some_config_name
 

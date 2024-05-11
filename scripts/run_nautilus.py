@@ -107,7 +107,7 @@ def loglike(p, sim_params, HOD_params, clustering_params, param_mapping, mytrace
     if loaded_ball is None:
         print('loading data')
     Ball = load_abacus_hod_once(sim_params, HOD_params, clustering_params)
-    
+    print("evaulating ", p)
     for tracer_type in mytracers: 
         for key in param_mapping[tracer_type].keys():
             mapping_idx = param_mapping[tracer_type][key]
@@ -225,11 +225,11 @@ def main(path2config):
     prior=prepPrior(bounds)
     print('start loading AbacusHOD object')
     
-    nthread=64
+    nthread=256
     
     sampler = Sampler(prior=prior, 
                       likelihood=loglike, 
-                      n_live=2000,
+                      n_live=3000,
                       filepath=prefix_check,
                       pass_dict=False,
                       pool=MPIPoolExecutor(),
@@ -246,7 +246,11 @@ def main(path2config):
                                          'jointcov_inv':jointcov_inv, 
                                          'fullscale':fullscale})
     print('run nested')
-    sampler.run(verbose=True)
+    sampler.run(verbose=True,n_eff=20000,discard_exploration=True)
+    points, logw, logl = sampler.posterior()
+    logz = sampler.evidence()
+    finalsamps = fit_config_params['path2output']+fit_config_params['chainsPrefix']+'_converged.txt'
+    np.savetxt(finalsamps,np.column_stack((points, logw, logl, logz)),header='samples, logweight, loglike, logZ', comments='#')
     
 class ArgParseFormatter(argparse.RawDescriptionHelpFormatter, argparse.ArgumentDefaultsHelpFormatter):
     pass

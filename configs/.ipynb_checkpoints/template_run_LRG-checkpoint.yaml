@@ -1,0 +1,70 @@
+HOD_params:
+  LRG_params:
+    Acent: 0.0
+    Asat: 0.0
+    Bcent: 0.0
+    Bsat: 0.0
+    alpha: 1.0
+    alpha_c: 0.33
+    alpha_s: 0.80
+    ic: 1.0
+    kappa: 1.2
+    logM1: 14.3
+    logM_cut: 13.1
+    s: 0
+    s_p: 0
+    s_r: 0
+    s_v: 0
+    sigma: 0.3
+  tracer_flags:
+    ELG: false
+    LRG: true
+    QSO: false
+  use_particles: true
+  want_AB: false
+  want_nfw: false
+  want_ranks: false
+  want_rsd: true
+  want_shear: false
+  write_to_disk: false
+clustering_params:
+  bin_params:
+    logmax: 1.5
+    logmin: -1.5
+    nbins: 18
+  clustering_type: wp
+  pi_bin_size: 40
+  pimax: 40
+prepare_sim:
+  Nparallel_load: 6
+sim_params:
+  cleaned_halos: true
+  output_dir: /scratch/hyzhang/y1hod/mocks/
+  sim_dir: /global/cfs/projectdirs/desi/cosmosim/Abacus/
+  sim_name: AbacusSummit_base_c000_ph000
+  subsample_dir: /pscratch/sd/h/hanyuz/Y1HOD/subsample_base_quadown/
+  z_mock: 0.5
+data_params:
+    tracer_density_mean:
+        LRG: 0.0005
+    tracer_density_std:
+        LRG: 0.00005 # (mpc/h)^-3 ####### variable
+    tracer_combos:
+        LRG_LRG:    
+            path2wp: /scratch/hyzhang/y1hod/data4fit/wp_LRG_GCcomb_0.4_0.6_pip_angular_bitwise_v1.4pip.dat 
+fit_params:
+    LRG:
+        logM_cut: [0, 12, 13.8, 13.0, 1.0]
+        logM1: [1, 12.5, 15.5, 14.0, 1.0]
+        sigma: [2, 0.001, 3, 0.5, 0.5]
+        alpha: [3, 0, 2, 1, 0.5]
+        kappa: [4, 0, 10, 0.5, 0.5]
+fit_config_params:
+    path2output: /pscratch/sd/h/hanyuz/Y1HOD/chains/
+    chainsPrefix: LRG_GCcomb_0.4_0.6_pip_angular_bitwise_v1.4pip_fit2wp
+    rerun: 0
+    walkersRatio: 4
+    use_mpi : True
+    mockcov: False
+    joint: /scratch/hyzhang/y1hod/data4fit/jkcov_LRG_GCcomb_0.4_0.6_pip_angular_bitwise_v1.4pip.dat
+    fullscale: True

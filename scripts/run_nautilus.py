@@ -250,7 +250,9 @@ def main(path2config):
     points, logw, logl = sampler.posterior()
     logz = sampler.evidence()
     finalsamps = fit_config_params['path2output']+fit_config_params['chainsPrefix']+'_converged.txt'
-    np.savetxt(finalsamps,np.column_stack((points, logw, logl, logz)),header='samples, logweight, loglike, logZ', comments='#')
+    evidenceout = fit_config_params['path2output']+fit_config_params['chainsPrefix']+'_evidence.txt'
+    np.savetxt(finalsamps,np.column_stack((points, logw, logl)),header='samples, logweight, loglike', comments='#')
+    np.savetxt(evidenceout,logz,header='logZ',comments='#')
     
 class ArgParseFormatter(argparse.RawDescriptionHelpFormatter, argparse.ArgumentDefaultsHelpFormatter):
     pass

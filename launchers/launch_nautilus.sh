@@ -5,7 +5,7 @@
 #SBATCH --nodes=4
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=256
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --constraint=cpu
 #SBATCH --qos=regular
 #SBATCH --account=desi

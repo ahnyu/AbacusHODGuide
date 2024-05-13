@@ -47,6 +47,6 @@ cd /path/to/AbacusHODGuide
 ## Full HOD fitting
 say you want a full HOD fitting run using configuration file some_config_name.yaml
 ```
-cd /path/to/AbacusHODGuide
-sh launchers/submit_nautilus.sh some_config_name
+cd /path/to/AbacusHODGuide/launchers
+sh submit_nautilus.sh some_config_name
 

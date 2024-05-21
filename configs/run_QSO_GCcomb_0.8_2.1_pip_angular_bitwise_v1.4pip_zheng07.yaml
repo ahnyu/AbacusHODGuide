@@ -1,0 +1,95 @@
+HOD_params:
+  QSO_params:
+    Acent: 0.0
+    Asat: 0.0
+    Bcent: 0.0
+    Bsat: 0.0
+    alpha: 1.0
+    alpha_c: 1.54
+    alpha_s: 0.6
+    ic: 1.0
+    kappa: 1.2
+    logM1: 14.3
+    logM_cut: 13.1
+    s: 0
+    s_p: 0
+    s_r: 0
+    s_v: 0
+    sigma: 0.3
+  tracer_flags:
+    ELG: false
+    LRG: false
+    QSO: true
+  use_particles: true
+  want_AB: false
+  want_nfw: false
+  want_ranks: false
+  want_rsd: true
+  want_shear: false
+  write_to_disk: false
+clustering_params:
+  bin_params:
+    logmax: 1.5
+    logmin: -1.5
+    nbins: 18
+  clustering_type: wp
+  pi_bin_size: 40
+  pimax: 40
+data_params:
+  tracer_combos:
+    QSO_QSO:
+      path2wp: /global/homes/h/hanyuz/AbacusHODGuide/datas/wp_QSO_GCcomb_0.8_2.1_pip_angular_bitwise_v1.4pip.dat
+  tracer_density_mean:
+    QSO: 3.099502449216962e-05
+  tracer_density_std:
+    QSO: 3.0995024492169624e-06
+fit_config_params:
+  chainsPrefix: chain_QSO_GCcomb_0.8_2.1_pip_angular_bitwise_v1.4pip
+  fullscale: false
+  joint: /global/homes/h/hanyuz/AbacusHODGuide/datas/jkcov_QSO_GCcomb_0.8_2.1_pip_angular_bitwise_v1.4pip.dat
+  mockcov: false
+  path2output: /pscratch/sd/h/hanyuz/Y1HOD/chains/
+  rerun: 0
+  use_mpi: true
+  walkersRatio: 4
+fit_params:
+  QSO:
+    alpha:
+    - 3
+    - 0.3
+    - 2
+    - 1
+    - 0.5
+    kappa:
+    - 4
+    - 0.3
+    - 3
+    - 0.5
+    - 0.5
+    logM1:
+    - 1
+    - 12
+    - 16
+    - 15.0
+    - 1.0
+    logM_cut:
+    - 0
+    - 11.2
+    - 14
+    - 12.7
+    - 1.0
+    sigma:
+    - 2
+    - 0.001
+    - 3
+    - 0.5
+    - 0.5
+prepare_sim:
+  Nparallel_load: 6
+sim_params:
+  cleaned_halos: true
+  output_dir: /pscratch/sd/h/hanyuz/Y1HOD/mocks/
+  sim_dir: /global/cfs/projectdirs/desi/cosmosim/Abacus/
+  sim_name: AbacusSummit_base_c000_ph000
+  subsample_dir: /pscratch/sd/h/hanyuz/Y1HOD/subsample_base_quadown/
+  z_mock: 1.4

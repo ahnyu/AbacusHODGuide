@@ -89,7 +89,7 @@ class wp_Data(object):
                 else:
                     lnprob += np.sum(delta**2/self.wpstds[key]**2)
         else:
-            delta = np.concatenate([self.clustering[key] - theory_clustering[key] for key in np.sort(list(self.clustering.keys()))])
+            delta = np.concatenate([self.clustering[key] - theory_clustering[key][skiprp:] for key in np.sort(list(self.clustering.keys()))])
             lnprob += np.einsum('i,ij,j', delta, jointcov_inv, delta)
 #        print(delta)
         lnprob *= -0.5
@@ -107,7 +107,7 @@ def loglike(p, sim_params, HOD_params, clustering_params, param_mapping, mytrace
     if loaded_ball is None:
         print('loading data')
     Ball = load_abacus_hod_once(sim_params, HOD_params, clustering_params)
-    print("evaulating ", p)
+#    print("evaulating ", p)
     for tracer_type in mytracers: 
         for key in param_mapping[tracer_type].keys():
             mapping_idx = param_mapping[tracer_type][key]

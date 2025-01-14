@@ -1,7 +1,7 @@
 # AbacusHODGuide
 Useful scripts for HOD fitting or optimizing using AbacusHOD
 
-## Build a conda envioronment (assuming work on nersc)
+## Build a conda environment (assuming work on nersc)
 We need a mpi4py enabled enviorment
 ```
 module load python
